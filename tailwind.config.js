@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor:{
+        orangePrimary:"#FF450D",
+      },
+      colors:{
+        orangeText:"#FF450D"
+      },
+      fontFamily:{
+        "LexendDeca":"'Lexend Deca', 'sans-serif'",
+        Urbanist:"'Urbanist', 'sans-serif'",
+      }
+    },
   },
   plugins: [],
 }
