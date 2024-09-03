@@ -1,18 +1,22 @@
-import { CiHeart, CiSearch } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
 import { CiMenuFries } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Modal from "./Modal";
 
 export default function NavigationBar() {
   const [menu, setMenu] = useState(false);
-
+  const [isConnect,setIsConnect] = useState(true)
   function menuHandler() {
     setMenu((prev) => !prev);
   }
-
+  const [isOpen,setIsOpen] = useState(false)
+  const modalHandler =()=>{
+    setIsOpen((prev)=>!prev)
+  }
   return (
+    <>
+    {isOpen&& <Modal modalHandler={modalHandler}/>}
     <nav
       className="w-full capitalize flex flex-col sm:flex-row justify-between sm:items-center border-b py-7 px-5 sm:pr-20 sm:h-20 lg:h-fit lg:pr-10 md:py-4 lg:px-10 fixed z-10 bg-white top-0 font-Urbanist"
     >
@@ -33,24 +37,26 @@ export default function NavigationBar() {
         onClick={()=>setMenu(false)}
       >
         <NavLink to="/"><li>home</li></NavLink>
-        <NavLink to="/product" className="hover:text-[#FF450D]">
-          <li>product</li>
-        </NavLink>
-        <NavLink to="/product" className="hover:text-[#FF450D]">
-          <li>industries</li>
-        </NavLink>
-        <NavLink to="/product" className="hover:text-[#FF450D]">
+        <NavLink to="/about-us" className="hover:text-[#FF450D]">
           <li>about</li>
         </NavLink>
+        <NavLink to="/contact-us" className="hover:text-[#FF450D]">
+        <li>contact us</li>
+        </NavLink>
+  
       </ul>
       <ul
         className={`${
-          !menu ? "min-[360px]:absolute sm:relative min-[360px]:right-14 sm:right-0 max-[360px]:hidden" : ""
+          !menu ? "min-[360px]:absolute sm:relative min-[360px]:right-14 sm:right-0 max-[447px]:hidden" : ""
         }  flex sm:flex-row justify-between sm:items-center gap-2 md:gap-5 w-fit`}
       >
-        <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">sign in</button>
-        <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">sign up</button>
+        {!isConnect && <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">connect wallet</button>}
+        {isConnect && <>
+          <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal" onClick={()=>{modalHandler()}}>create budget</button>
+          <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">0x00...789</button>
+        </>}
       </ul>
     </nav>
+    </>
   );
 }

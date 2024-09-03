@@ -6,6 +6,9 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Vote from './pages/vote.jsx';
 import Budget from './pages/Budget.jsx';
+import AboutUs from './pages/AboutUs.jsx';
+import ContactUs from './pages/ContactUs.jsx';
+import  WalletProvider  from './contex/WalletContextProvider.jsx';
 
 const root = createBrowserRouter([
   {
@@ -19,17 +22,24 @@ const root = createBrowserRouter([
     ],
   },
   {
-    path:"/vote",
-    element: <Vote />,
+    path:"/about-us",
+    element: <AboutUs />,
   },
   {
     path:"/budget",
     element: <Budget />,
   },
+  {
+    path:"/contact-us",
+    element: <ContactUs />,
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={root}/>
+    <WalletProvider>
+      <RouterProvider router={root}/>
+    </WalletProvider>
+  
   </StrictMode>,
 )

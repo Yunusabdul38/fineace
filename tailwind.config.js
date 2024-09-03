@@ -9,6 +9,9 @@ export default {
       backgroundColor:{
         orangePrimary:"#FF450D",
       },
+      backgroundImage:{
+        coin:"url('./src/assets/coins.jpg')"
+      },
       colors:{
         orangeText:"#FF450D"
       },
