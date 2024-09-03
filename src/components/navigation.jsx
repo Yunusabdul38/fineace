@@ -1,12 +1,13 @@
 import { CiMenuFries } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Modal from "./Modal";
+import { CreatContext } from "../contex/WalletContextProvider";
 
 export default function NavigationBar() {
   const [menu, setMenu] = useState(false);
-  const [isConnect,setIsConnect] = useState(true)
+ const {wallet} = useContext(CreatContext)
   function menuHandler() {
     setMenu((prev) => !prev);
   }
@@ -50,8 +51,8 @@ export default function NavigationBar() {
           !menu ? "min-[360px]:absolute sm:relative min-[360px]:right-14 sm:right-0 max-[447px]:hidden" : ""
         }  flex sm:flex-row justify-between sm:items-center gap-2 md:gap-5 w-fit`}
       >
-        {!isConnect && <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">connect wallet</button>}
-        {isConnect && <>
+        {!wallet && <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">connect wallet</button>}
+        {wallet && <>
           <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal" onClick={()=>{modalHandler()}}>create budget</button>
           <button className="hover:bg-orangePrimary bg-white hover:text-white border-2 text-orangeText border-orangeText hover:border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal">0x00...789</button>
         </>}

@@ -14,9 +14,9 @@ export default function AboutUs() {
             alt="frame avater"
             className="w-4/5 md:w-1/2 lg:w-2/5"
           />
-          <div className="px-10 font-Urbanist w-full md:w-1/2 gap-5 grid ">
+          <div className="px-5 md:pl-10 font-Urbanist w-full md:w-1/2 gap-5 grid">
             <h1 className="text-[#1A1A1A] font-semibold sm:text-3xl text-4xl md:text-5xl lg:text-5xl uppercase">
-              Managing investment <br /> has never been easier
+            Master Your Money,<br /> Simplify Your Future
             </h1>
             <p className="text-[#808080]">
               Investment management refers to the handling of financial assets
@@ -28,12 +28,12 @@ export default function AboutUs() {
             </button>
           </div>
         </header>
-        <section className="mt-20 md:px-20 grid gap-5" id="about">
-          <h1 className="font-LexendDeca text-4xl font-bold text-orangeText">
+        <section className="mt-20 md:px-20 grid gap-5 px-5">
+          <h1 className="font-LexendDeca text-2xl sm:text-4xl font-medium sm:font-bold text-orangeText">
             Welcome to FineAce, your trusted partner <br/> in digital finance and
             budgeting.
           </h1>
-          <p className="w-3/4 text-lg text-[#808080]">
+          <p className="md:w-3/4 text-lg text-[#808080]">
             We are committed to making financial management simple, intuitive,
             and effective for everyone. At FineAce, we believe that
             understanding and controlling your finances shouldn’t be complicated

@@ -32,9 +32,9 @@ export default function Budget() {
             alt="frame avater"
             className="w-full sm:w-3/5 md:w-1/2 lg:w-2/5"
           />
-          <div className="px-10 font-Urbanist w-full md:w-1/2 gap-5 grid ">
+          <div className="px-5 sm:pl-10 font-Urbanist w-full md:w-1/2 gap-5 grid ">
             <h1 className="text-[#1A1A1A] font-semibold sm:text-3xl text-4xl md:text-5xl lg:text-5xl uppercase">
-              Managing investment <br /> has never been easier
+            Master Your Money,<br /> Unlock Your Future.
             </h1>
             <p className="text-[#808080]">
               Investment management refers to the handling of financial assets
