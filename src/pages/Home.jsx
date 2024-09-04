@@ -63,13 +63,26 @@ export default function Home() {
     </div>
         </div>
       </section>
-      <section className="mt-20 flex flex-wrap px-10 justify-center">
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-      </section>
+      <div className="mt-20 px-10">
+      <h1 className="text-orangeText/70 font-semibold sm:text-3xl text-4xl md:text-5xl lg:text-5xl text-center uppercase ">available budgets</h1>
+        <section className="flex flex-wrap  justify-center">
+        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        </section>
+      </div>
+      <div className="mt-20 px-10">
+      <h1 className="text-orangeText/70 font-semibold sm:text-3xl text-4xl md:text-5xl lg:text-5xl text-center uppercase ">available loans</h1>
+        <section className="flex flex-wrap  justify-center">
+          <Card departments="2 departments"  name="school loan" type="loan" />
+          <Card departments="2 departments"  name="school loan" type="loan" />
+          <Card departments="2 departments"  name="school loan" type="loan" />
+          <Card departments="2 departments"  name="school loan" type="loan" />
+          <Card departments="2 departments"  name="school loan" type="loan" />
+          <Card departments="2 departments"  name="school loan" type="loan" />
+        </section>
+      </div>
     </div>
   );
 }

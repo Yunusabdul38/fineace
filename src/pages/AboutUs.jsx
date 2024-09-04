@@ -30,7 +30,7 @@ export default function AboutUs() {
         </header>
         <section className="mt-20 md:px-20 grid gap-5 px-5">
           <h1 className="font-LexendDeca text-2xl sm:text-4xl font-medium sm:font-bold text-orangeText">
-            Welcome to FineAce, your trusted partner <br/> in digital finance and
+            Welcome to FineAce, your trusted partner <br/> in digital finance, loan and
             budgeting.
           </h1>
           <p className="md:w-3/4 text-lg text-[#808080]">

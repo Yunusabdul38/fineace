@@ -10,7 +10,8 @@ export default {
         orangePrimary:"#FF450D",
       },
       backgroundImage:{
-        coin:"url('./src/assets/coins.jpg')"
+        coin:"url('./src/assets/coins.jpg')",
+        money:"url('./src/assets/money.jpg')",
       },
       colors:{
         orangeText:"#FF450D"
