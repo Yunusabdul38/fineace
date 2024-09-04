@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home.jsx';
-import Vote from './pages/vote.jsx';
 import Budget from './pages/Budget.jsx';
 import AboutUs from './pages/AboutUs.jsx';
 import ContactUs from './pages/ContactUs.jsx';
@@ -20,6 +19,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
+import Loans from './pages/Loans.jsx';
 
 const config = getDefaultConfig({
   appName: 'Fineace',
@@ -50,6 +50,10 @@ const root = createBrowserRouter([
   {
     path: "/contact-us",
     element: <ContactUs />,
+  },
+  {
+    path: "/loans",
+    element: <Loans />,
   },
 ]);
 

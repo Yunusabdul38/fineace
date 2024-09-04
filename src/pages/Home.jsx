@@ -7,6 +7,7 @@ import icon5 from "../assets/Fill 1.png";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Card from "../components/Card";
 import { useView } from "../hook/useView";
+import { Link } from "react-router-dom";
 export default function Home() {
   useView()
   return (
@@ -19,7 +20,7 @@ export default function Home() {
             Investment management refers to the handling of financial assets and
             other investments—not only buying and selling them.
           </p>
-          <button className="bg-orangePrimary hover:bg-white text-white border-2 hover:text-orangeText hover:border-orangeText border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal w-fit"> Let’s Get a Rich</button>
+          <Link to="/about-us" className="bg-orangePrimary hover:bg-white text-white border-2 hover:text-orangeText hover:border-orangeText border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal w-fit">know more</Link>
         </div>
       </header>
       <section className="font-Urbanist text-[#1A1A1A] p-10 mt-20 relative">

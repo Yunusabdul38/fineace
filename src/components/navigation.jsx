@@ -23,7 +23,7 @@ export default function NavigationBar() {
   }
   return (
     <>
-      {isOpen && <Modal modalHandler={modalHandler} />}
+      {!isOpen && <Modal modalHandler={modalHandler} />}
       <nav
         className="w-full capitalize flex flex-col sm:flex-row justify-between sm:items-center border-b py-7 px-5 sm:pr-20 sm:h-20 lg:h-fit lg:pr-10 md:py-4 lg:px-10 fixed z-10 bg-white top-0 font-Urbanist"
       >
@@ -45,6 +45,9 @@ export default function NavigationBar() {
           <NavLink to="/"><li>home</li></NavLink>
           <NavLink to="/about-us" className="hover:text-[#FF450D]">
             <li>about</li>
+          </NavLink>
+          <NavLink to="/loans" className="hover:text-[#FF450D]">
+            <li>loans/Grants</li>
           </NavLink>
           <NavLink to="/contact-us" className="hover:text-[#FF450D]">
             <li>contact us</li>
