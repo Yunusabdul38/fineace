@@ -1,15 +1,12 @@
 import { useState } from "react";
-import TableRow from "../components/TableRow";
 import { useView } from "../hook/useView";
 import FundsModal from "../components/FundsModal";
 import { useAccount } from "wagmi";
-import AllocateFundsModal from "../components/AllocateFundsModal";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
 
 export default function Budget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAllocateOpen, setIsAllocateOpen] = useState(false);
 
   const { address } = useAccount();
   useView();

@@ -1,4 +1,5 @@
 import Frame from "../assets/Frame (1).svg";
+import PropTypes from 'prop-types';
 
 export default function Hero({
   address,
@@ -34,4 +35,14 @@ export default function Hero({
       </div>
     </header>
   );
+}
+
+Hero.propTypes={
+  address:PropTypes.string,
+  modalHandler:PropTypes.func,
+  heroText:PropTypes.string,
+  subText:PropTypes.string,
+  paragraph:PropTypes.string,
+  btn:PropTypes.string,
+  btnText:PropTypes.string,
 }

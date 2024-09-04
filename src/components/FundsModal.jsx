@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
 import { useForm } from "react-hook-form";
-
+import PropTypes from 'prop-types';
 export default function FundsModal({modalHandler}) {
   const {
     register,
@@ -67,4 +67,8 @@ export default function FundsModal({modalHandler}) {
       )}
     </>
   );
+}
+
+FundsModal.propTypes={
+  modalHandler:PropTypes.func
 }

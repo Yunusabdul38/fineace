@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
 import { useRef } from "react";
+import PropTypes from 'prop-types';
 
 export default function LoansModal({modalHandler}) {
   const ref = useRef()
@@ -99,4 +100,8 @@ export default function LoansModal({modalHandler}) {
       )}
     </>
   );
+}
+
+LoansModal.propTypes={
+  modalHandler:PropTypes.func
 }

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
 import { useForm } from "react-hook-form";
+import PropTypes from 'prop-types';
 
 export default function RequestLoanModal({modalHandler}) {
   const {
@@ -67,4 +68,9 @@ export default function RequestLoanModal({modalHandler}) {
       )}
     </>
   );
+}
+
+
+RequestLoanModal.propTypes={
+  modalHandler:PropTypes.func
 }
