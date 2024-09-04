@@ -1,12 +1,10 @@
 import { createContext, useReducer } from "react";
 
 const initialData = {
-    wallet:false,
+    wallet:true,
     dispatch:()=>{},    
 }
-export const CreatContext = createContext({
-  wallet: false,
-});
+export const CreatContext = createContext(initialData);
 
 const reducer = (action,state)=>{
     if(action.type === "active-wallet"){

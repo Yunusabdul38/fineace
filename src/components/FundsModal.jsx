@@ -2,15 +2,25 @@ import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
+import { useForm } from "react-hook-form";
 
 export default function FundsModal({modalHandler}) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
     const ref = useRef()
     useModal(modalHandler,ref)
+    const onSubmit = (data)=>{
+      console.log(data)
+    }
   return (
     <>
       {createPortal(
         <div className="w-full h-full fixed bg-slate-400/40 z-30 top-0 flex justify-center items-center font-LexendDeca"  ref={ref}>
-          <form className="z-40 bg-slate-50 w-[90%] sm:w-1/2 mx-auto p-4 sm:p-6 capitalize grid gap-2 rounded-md transition-all duration-700 relative">
+          <form className="z-40 bg-slate-50 w-[90%] sm:w-1/2 mx-auto p-4 sm:p-6 capitalize grid gap-2 rounded-md transition-all duration-700 relative" onSubmit={handleSubmit(onSubmit)}>
           <h1 className="capitalize text-center text-orangeText text-2xl">request funds</h1>
             <HiXMark className="absolute right-5 top-3 text-2xl hover:text-orangeText" onClick={()=>modalHandler()}/>          
             <div>
@@ -26,6 +36,7 @@ export default function FundsModal({modalHandler}) {
                 className="focus:border-orangeText outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="fitech"
                 required
+                {...register("amount")}
               />
             </div>
             <div>
@@ -41,6 +52,7 @@ export default function FundsModal({modalHandler}) {
                 className="focus:border-orangeText outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="request reason"
                 required
+                {...register("reason")}
               />
             </div>
             <button

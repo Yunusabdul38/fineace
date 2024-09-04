@@ -7,7 +7,7 @@ export default function Footer() {
        <h3> fineace</h3>
        <h5 className="text-xs font-thin text-gray-500">investment group</h5>
       </div>
-        <h5>Pacific Century Place 16/F SCBD Lot 10, Jl. Jend. <br/> Sudirman Kav. 52-53, Jakarta 12190</h5>
+        <h5>Z 49 katagu road<br/> kaduna, Nigeria</h5>
       
       </ul>
       <ul>
@@ -25,7 +25,7 @@ export default function Footer() {
         <li>terms and services</li>
       </ul>
         </nav>
-        <p className='text-center pt-4'>Copyright ©Fineace 2024. All Rights Reserved.</p>
+        <p className='text-center pt-4 text-xs md:text-sm'>Copyright ©Fineace 2024. All Rights Reserved.</p>
       </footer>
   )
 }
