@@ -1,13 +1,10 @@
-import Footer from "../components/footer";
-import NavigationBar from "../components/navigation";
 import Frame from "../assets/Frame (2).svg";
 import { useView } from "../hook/useView";
 export default function AboutUs() {
     useView()
   return (
-    <div className="overflow-hidden">
-      <NavigationBar />
-      <div className="mt-[5rem] font-Urbanist">
+    <div className="overflow-hidden"> 
+      <div className="font-Urbanist">
         <header className="flex flex-col justify-between items-center bg-[#FFF3E5] w-full py-10 sm:flex-row-reverse">
           <img
             src={Frame}
@@ -45,7 +42,6 @@ export default function AboutUs() {
           </p>
         </section>
       </div>
-      <Footer />
     </div>
   );
 }

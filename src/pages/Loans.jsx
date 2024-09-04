@@ -1,6 +1,3 @@
-import Footer from "../components/footer";
-import NavigationBar from "../components/navigation";
-import Frame from "../assets/Frame (1).svg";
 import Hero from "../components/Hero";
 import { useState } from "react";
 import { useView } from "../hook/useView";
@@ -16,7 +13,6 @@ export default function Loans() {
   }
   return (
     <section className="">
-      <NavigationBar />
       {isOpen && <LoansModal modalHandler={modalHandler} />}
       <div className="bg-[#FFF3E5] mt-[5rem]">
         <Hero
@@ -88,14 +84,13 @@ export default function Loans() {
         </p>
       </section>
       <div className="mt-20">
-      <h1 className="text-orangeText/70 font-semibold sm:text-3xl text-4xl md:text-5xl lg:text-5xl text-center uppercase ">available loans</h1>
+      <h1 className="text-orangeText/70 font-semibold text-2xl text-center sm:text-start sm:ml-28 uppercase ">available loans</h1>
       <section className="flex flex-wrap  justify-center">
         <Card departments="2 departments" name="school loan" type="loan" />
         <Card departments="2 departments" name="school loan" type="loan" />
         <Card departments="2 departments" name="school loan" type="loan" />
       </section>
       </div>
-      <Footer />
     </section>
   );
 }

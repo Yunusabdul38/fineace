@@ -49,6 +49,12 @@ export default function NavigationBar() {
           <NavLink to="/loans" className="hover:text-[#FF450D]">
             <li>loans/Grants</li>
           </NavLink>
+          <NavLink to="/budget" className="hover:text-[#FF450D]">
+            <li>budget</li>
+          </NavLink>
+          <NavLink to="/know-more" className="hover:text-[#FF450D]">
+            <li>know more</li>
+          </NavLink>
           <NavLink to="/contact-us" className="hover:text-[#FF450D]">
             <li>contact us</li>
           </NavLink>

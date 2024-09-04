@@ -21,6 +21,7 @@ import {
 } from "@tanstack/react-query";
 import Loans from './pages/Loans.jsx';
 import LoansId from './pages/loanId.jsx';
+import BudgetId from './pages/BudgetId.jsx';
 
 const config = getDefaultConfig({
   appName: 'Fineace',
@@ -38,28 +39,33 @@ const root = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      }, 
+      {
+        path: "/loans",
+        element: <Loans />,
+      },
+      {
+        path: "/budget",
+        element: <Budget />,
+      },
     ],
   },
   {
-    path: "/about-us",
-    element: <AboutUs />,
+    path: "/budget:id",
+    element: <BudgetId />,
   },
   {
-    path: "/budget",
-    element: <Budget />,
+    path: "/loans/:id",
+    element: <LoansId />,
   },
   {
     path: "/contact-us",
     element: <ContactUs />,
   },
-  {
-    path: "/loans",
-    element: <Loans />,
-    children:[{
-      path: "/loans/:id",
-      element: <LoansId />,
-    }]
-  },
+ 
 ]);
 
 const queryClient = new QueryClient();
