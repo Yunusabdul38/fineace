@@ -22,6 +22,8 @@ import {
 import Loans from './pages/Loans.jsx';
 import LoansId from './pages/loanId.jsx';
 import BudgetId from './pages/BudgetId.jsx';
+import KnowMore from './pages/Know-more.jsx';
+import KnowMoreId from './pages/Know-moreId.jsx';
 
 const config = getDefaultConfig({
   appName: 'Fineace',
@@ -51,11 +53,19 @@ const root = createBrowserRouter([
         path: "/budget",
         element: <Budget />,
       },
+      {
+        path: "/know-more",
+        element: <KnowMore />,
+      },
     ],
   },
   {
-    path: "/budget:id",
+    path: "/budget/:id",
     element: <BudgetId />,
+  },
+  {
+    path: "/know-more/:id",
+    element: <KnowMoreId />,
   },
   {
     path: "/loans/:id",

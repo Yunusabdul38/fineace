@@ -5,6 +5,8 @@ import FundsModal from "../components/FundsModal";
 import { useAccount } from "wagmi";
 import AllocateFundsModal from "../components/AllocateFundsModal";
 import Hero from "../components/Hero";
+import NavigationBar from "../components/navigation";
+import Footer from "../components/footer";
 
 const dummy = [
   { department: "kasu medical department", budget: 400000, spend: 30000 },
@@ -32,6 +34,7 @@ export default function Budget() {
       {isAllocateOpen && (
         <AllocateFundsModal modalHandler={allocateFundsModalHandler} />
       )}
+      <NavigationBar/>
       <section className="">
         <div className="bg-[#FFF3E5] mt-[5rem]">
           <Hero
@@ -75,6 +78,7 @@ export default function Budget() {
           </section>
         )}
       </section>
+      <Footer/>
     </>
   );
 }
