@@ -3,9 +3,15 @@ import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
 import { useRef } from "react";
 import PropTypes from 'prop-types';
+import { getSavedBudget } from "../utils";
 
 export default function Modal({modalHandler}) {
   const ref = useRef()
+
+  const handleBudget = async(e) => {
+    e.preventDefault();
+    const tx= await getSavedBudget(0);
+  }
   useModal(modalHandler,ref)
   return (
     <>
@@ -61,6 +67,7 @@ export default function Modal({modalHandler}) {
             </div>
             <button
               type="submit"
+              onClick={handleBudget}
               className="flex gap-2 items-center mt-2 bg-orangePrimary hover:bg-white text-white border-2 hover:text-orangeText hover:border-orangeText border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-3 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal w-full place-content-center"
             >
               Submit
