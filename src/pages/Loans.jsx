@@ -87,8 +87,8 @@ export default function Loans() {
       <h1 className="text-orangeText/70 font-semibold text-2xl text-center sm:text-start sm:ml-28 uppercase ">available loans</h1>
       <section className="flex flex-wrap  justify-center">
         <Card departments="2 departments" name="school loan" type="loan" />
-        <Card departments="2 departments" name="school loan" type="loan" />
-        <Card departments="2 departments" name="school loan" type="loan" />
+        <Card departments="2 departments" name="agriculture loan" type="loan" />
+        <Card departments="2 departments" name="financial loan" type="loan" />
       </section>
       </div>
     </section>

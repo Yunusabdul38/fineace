@@ -7,6 +7,7 @@ import AllocateFundsModal from "../components/AllocateFundsModal";
 import Hero from "../components/Hero";
 import NavigationBar from "../components/navigation";
 import Footer from "../components/footer";
+import { useParams } from "react-router-dom";
 
 const dummy = [
   { department: "kasu medical department", budget: 400000, spend: 30000 },
@@ -15,6 +16,7 @@ const dummy = [
   { department: "kasu chemistry department", budget: 1400000, spend: 130000 },
 ];
 export default function Budget() {
+  const {id} = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isAllocateOpen, setIsAllocateOpen] = useState(false);
 
@@ -34,7 +36,7 @@ export default function Budget() {
       {isAllocateOpen && (
         <AllocateFundsModal modalHandler={allocateFundsModalHandler} />
       )}
-      <NavigationBar/>
+      <NavigationBar />
       <section className="">
         <div className="bg-[#FFF3E5] mt-[5rem]">
           <Hero
@@ -42,43 +44,45 @@ export default function Budget() {
             modalHandler={modalHandler}
             paragraph="Investment management refers to the handling of financial assets
               and other investments—not only buying and selling them."
-            btnText="request fund"  
-            subText="Unlock Your Future"
-            heroText="Master Your Money,"
+            btnText="request fund"
+            heroText={id.replaceAll("-", " ")}
           />
         </div>
-        <h1 className="uppercase text-xl font-LexendDeca font-bold px-5 sm:px-10">
-          total budget: <span className="text-orangeText">500,000</span>
-        </h1>
-        {!address && (
-          <section className="mt-10 px-5 sm:px-10 mx-auto" role="table">
-            <TableRow
-              sn="S/N"
-              budget="budget"
-              department="department"
-              spend="spend"
-            />
-            {dummy.map((data, index) => (
+        {address && (
+          <>
+            <h1 className="uppercase text-xl font-LexendDeca font-bold px-5 sm:px-10">
+              total budget: <span className="text-orangeText">500,000</span>
+            </h1>
+
+            <section className="mt-10 px-5 sm:px-10 mx-auto" role="table">
               <TableRow
-                key={index}
-                sn={++index}
-                budget={data.budget}
-                department={data.department}
-                spend={data.spend}
-                request={true}
-                handler={allocateFundsModalHandler}
+                sn="S/N"
+                budget="budget"
+                department="department"
+                spend="spend"
               />
-            ))}
-            <TableRow
-              sn="total"
-              budget={budgetTotal}
-              department=""
-              spend={spendstTotal}
-            />
-          </section>
+              {dummy.map((data, index) => (
+                <TableRow
+                  key={index}
+                  sn={++index}
+                  budget={data.budget}
+                  department={data.department}
+                  spend={data.spend}
+                  request={true}
+                  handler={allocateFundsModalHandler}
+                />
+              ))}
+              <TableRow
+                sn="total"
+                budget={budgetTotal}
+                department=""
+                spend={spendstTotal}
+              />
+            </section>
+          </>
         )}
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }

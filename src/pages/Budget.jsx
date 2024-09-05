@@ -32,12 +32,12 @@ export default function Budget() {
         <div className="mt-20 px-10">
       <h1 className="text-orangeText/70 font-semibold text-2xl text-center sm:text-start sm:ml-28 uppercase ">available budgets</h1>
         <section className="flex flex-wrap  justify-center">
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
+        <Card departments="5 departments"  name="kaduna state university" type="budget" />
         </section>
       </div>
       </section>

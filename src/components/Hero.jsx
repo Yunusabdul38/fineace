@@ -24,7 +24,7 @@ export default function Hero({
           {subText}
         </h1>
         <p className="text-[#808080]">{paragraph}</p>
-        {!address || btn==="no-btn" && (
+        {!address && (
           <button
             className="bg-orangePrimary hover:bg-white text-white border-2 hover:text-orangeText hover:border-orangeText border-transparent transition-all duration-500 ease-in-out rounded-md px-2 py-1 sm:px-7 sm:py-2 capitalize font-LexendDeca font-normal w-fit"
             onClick={modalHandler}

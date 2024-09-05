@@ -19,9 +19,9 @@ export default function Modal({ modalHandler }) {
     }
     try {
       const departmentArray = department.split(',').map(dept => dept.trim()).filter(dept => dept !== '');
-      // const tx = await createBudget({orgName, budget, departmentArray});
-      const tx= await getSavedBudget(0)
-      console.log(tx)
+      const tx = await createBudget({orgName, budget, departmentArray});
+      // const tx= await getSavedBudget(0)
+      console.log(tx,departmentArray)
     } catch (err) {
       console.log(err);
     }
