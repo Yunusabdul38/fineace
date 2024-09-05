@@ -8,7 +8,22 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import Card from "../components/Card";
 import { useView } from "../hook/useView";
 import { Link } from "react-router-dom";
+import { getAllBudgets, getSavedBudget } from "../utils";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [budgets, setBudgets] = useState([]);
+
+  useEffect(() => {
+    const getData = async() =>{
+      const buds = await getAllBudgets();
+      setBudgets(buds);
+      const bud=await getSavedBudget(0);
+      console.log(bud)
+    }
+    getData();
+  }, []);
+
   useView()
   return (
     <div className="">
@@ -66,10 +81,15 @@ export default function Home() {
       <div className="mt-20 px-10">
       <h1 className="text-orangeText/70 font-semibold text-2xl text-center sm:text-start sm:ml-28 uppercase ">available budgets</h1>
         <section className="flex flex-wrap  justify-center">
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
-        <Card departments="5 departments"  name="kaduna state univercity" type="budget" />
+        {budgets.length > 0 ? (
+            <>
+              {budgets.map((budget, _i) => (
+                <Card departments={budget?.department} name={budget?.name} type="budget" />
+              ))}
+            </>
+          ):(
+            <p className="text-xl font-[500]">No budget available</p>
+          )}
         </section>
       </div>
       <div className="mt-20 px-10">

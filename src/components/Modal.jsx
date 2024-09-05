@@ -1,25 +1,39 @@
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import useModal from "../hook/useModal";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import PropTypes from 'prop-types';
-import { getSavedBudget } from "../utils";
+import { getSavedBudget, createBudget } from "../utils";
 
-export default function Modal({modalHandler}) {
+export default function Modal({ modalHandler }) {
   const ref = useRef()
+  const [budget, setBudget] = useState();
+  const [department, setDepartment] = useState();
+  const [orgName, setOrgName] = useState();
 
-  const handleBudget = async(e) => {
+  const handleBudget = async (e) => {
     e.preventDefault();
-    const tx= await getSavedBudget(0);
+    if (!budget && !department && !orgName) {
+      alert("invalid input");
+      return;
+    }
+    try {
+      const departmentArray = department.split(',').map(dept => dept.trim()).filter(dept => dept !== '');
+      // const tx = await createBudget({orgName, budget, departmentArray});
+      const tx= await getSavedBudget(0)
+      console.log(tx)
+    } catch (err) {
+      console.log(err);
+    }
   }
-  useModal(modalHandler,ref)
+  useModal(modalHandler, ref)
   return (
     <>
       {createPortal(
         <div className="w-full h-full fixed bg-slate-400/40 z-30 top-0 flex justify-center items-center font-LexendDeca" ref={ref}>
           <form className="z-40 bg-slate-50 w-[90%] sm:w-1/2 mx-auto p-4 sm:p-6 capitalize grid gap-2 rounded-md transition-all duration-700 relative">
-          <h1 className="capitalize text-center text-orangeText text-2xl">create budget</h1>
-            <HiXMark className="absolute right-5 top-3 text-2xl hover:text-orangeText" onClick={()=>modalHandler()}/>          
+            <h1 className="capitalize text-center text-orangeText text-2xl">create budget</h1>
+            <HiXMark className="absolute right-5 top-3 text-2xl hover:text-orangeText" onClick={() => modalHandler()} />
             <div>
               <label
                 htmlFor="organization-name"
@@ -32,6 +46,7 @@ export default function Modal({modalHandler}) {
                 id="organization-name"
                 className="focus:border-orangeText outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="fitech"
+                onChange={(e) => setOrgName(e.target.value)}
                 required
               />
             </div>
@@ -43,6 +58,7 @@ export default function Modal({modalHandler}) {
                 departments <span className="text-orangeText text-[10px]">(comma separated)</span>
               </label>
               <input
+                onChange={(e) => setDepartment(e.target.value)}
                 type="text"
                 id="department"
                 className="focus:border-orangeText outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -58,6 +74,7 @@ export default function Modal({modalHandler}) {
                 total budget
               </label>
               <input
+                onChange={(e) => setBudget(e.target.value)}
                 type="number"
                 id="budget-amount"
                 className="focus:border-orangeText outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -80,6 +97,6 @@ export default function Modal({modalHandler}) {
   );
 }
 
-Modal.propTypes={
-  modalHandler:PropTypes.func
+Modal.propTypes = {
+  modalHandler: PropTypes.func
 }

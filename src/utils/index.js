@@ -1,78 +1,112 @@
 import { Web3 } from "web3";
-import budgetAllowanceAbi from "../abis/BudgetAllocation.json";
+import budgetAllocationAbi from "../abis/BudgetAllocation.json";
 import fundRequestAbi from "../abis/FundRequest.json";
 import publicDashboardAbi from "../abis/PublicDashboard.json";
 
-const BUDGET_ALLOWANCE_CONTRACT_ADDRESS = "0x2d5167037Df5075B3345a09C2135502ffbbf8940";
-const FUND_REQUEST_CONTRACT_ADDRESS = "0x070D439F85422896Ef30fddA897e529C0DB57801";
-const PUBLIC_DASHBOARD_CONTRACT_ADDRESS = "0x946017124b77dEe1d7eefA3Ea9102CB3E54451eB";
+const BUDGET_ALLOCATION_CONTRACT_ADDRESS = "0x073553ee8fEc1999eC042e6D00fb28eE5eEF7edC";
+const FUND_REQUEST_CONTRACT_ADDRESS = "0x9aa754E04c640A331B0CbDc708008d3333C50609";
+const PUBLIC_DASHBOARD_CONTRACT_ADDRESS = "0xB5Ff3CB7E752A8F5F671a8fF80328419E89F54AA";
 
 export const web3 = new Web3(window.ethereum);
 
-export const connectWallet = async () => {
-  console.log("Connecting...")
-  if (web3 === null) {
-    console.log("Not connected")
-    return;
-  }
-  try {
-    console.log("Trying ")
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    // Request account access
-    // await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-    // Get the connected accounts
-    const accounts = await web3.eth.getAccounts();
-    console.log(accounts);
-
-    // Return the first account address
-    return accounts[0];
-  } catch (error) {
-    console.error("User denied account access or an error occurred:", error);
-    return null;
-  }
-}
-
 const initializeContracts = async () => {
-  const budgetAllowanceContract = new web3.eth.Contract(budgetAllowanceAbi.abi, BUDGET_ALLOWANCE_CONTRACT_ADDRESS);
-  console.log(budgetAllowanceContract);
+  const budgetAllocationContract = new web3.eth.Contract(budgetAllocationAbi.abi, BUDGET_ALLOCATION_CONTRACT_ADDRESS);
+  console.log(budgetAllocationContract);
 
   const fundRequestContract = new web3.eth.Contract(fundRequestAbi.abi, FUND_REQUEST_CONTRACT_ADDRESS);
 
   const publicDashboardContract = new web3.eth.Contract(publicDashboardAbi.abi, PUBLIC_DASHBOARD_CONTRACT_ADDRESS);
 
-  return { budgetAllowanceContract, fundRequestContract, publicDashboardContract }
+  return { budgetAllocationContract, fundRequestContract, publicDashboardContract }
 }
 
 export const createBudget = async (budgetDetails) => {
-  const { orgName, budget } = budgetDetails;
-  const {budgetAllowanceContract} = await initializeContracts();
-  // const budgetAllowanceContract = new web3.eth.Contract(budgetAllowanceAbi.abi, BUDGET_ALLOWANCE_CONTRACT_ADDRESS);
+  const { orgName, budget, departmentArray } = budgetDetails;
+  const {budgetAllocationContract} = await initializeContracts();
+  // const budgetAllocationContract = new web3.eth.Contract(budgetAllocationAbi.abi, BUDGET_ALLOCATION_CONTRACT_ADDRESS);
   
   try {
     console.log('web3', web3.eth)
     // await window.ethereum.request({ method: "eth_requestAccounts" });
     const accounts = await web3.eth.requestAccounts();
     console.log('accounts connected', accounts[0]);
-    console.log(budgetAllowanceContract);
+    console.log(budgetAllocationContract);
 
-    const budgetTx = await budgetAllowanceContract.methods.setBudgetParams(orgName, Number(budget)).send({ from: accounts[0], value: 1000000000});
+    const budgetTx = await budgetAllocationContract.methods.setBudgetParams(orgName, budget, departmentArray).send({ from: accounts[0],gasPrice: 300000000 });
+    // console.log(budgetTx);
 
-    console.log(budgetTx);
-
-    // console.log("Budget Added With Hash: ", budgetTx.transactionHash);
+    console.log("Budget Added With Hash: ", budgetTx.transactionHash);
   } catch (err) {
     console.log(err);
   }
 }
 
 export const getSavedBudget = async (id) => {
-  const {budgetAllowanceContract} = await initializeContracts();
-  console.log(budgetAllowanceContract)
+  const {budgetAllocationContract} = await initializeContracts();
+  console.log(budgetAllocationContract)
   try {
-    const budget = await budgetAllowanceContract.methods.getBudget(id).call();
+    const budget = await budgetAllocationContract.methods.getBudget(id).call();
     return budget;
   } catch (err) {
     console.log(err);
   }
+}
+
+export const requestForFunds = async(reason, amount, budgetId) => {
+  const { budgetAllocationContract, fundRequestContract } = await initializeContracts();
+  const accounts = await web3.eth.requestAccounts();
+  // console.log('accounts connected', accounts[0]);
+
+  const reqTx = await fundRequestContract.methods.requestFunds(amount, reason).send({from: accounts[0], gasPrice: 300000000});
+
+  console.log("Transaction Hash: ", reqTx);
+}
+
+export const getAllBudgets = async() => {
+  const {budgetAllocationContract} = await initializeContracts();
+  console.log("Fetching")
+
+  const getBudgetCount = await budgetAllocationContract.methods.budgetCount().call();
+  let allBudgets = [];
+
+  for(let i= 0; i < getBudgetCount; i++) {
+    const budget = await getSavedBudget(i)
+    allBudgets.push(budget);
+  }
+
+  return allBudgets;
+}
+
+export const approveFundRequest = async(department, id) => {
+  const {fundRequestContract} = await initializeContracts();
+  const accounts = await web3.eth.requestAccounts();
+  const approveReqTx = await fundRequestContract.methods.approveRequest(department, id).send({from: accounts[0], gasPrice: 300000000})
+
+  console.log("Transaction Hash: ", approveReqTx);
+}
+
+export const rejectFundRequest = async(department) => {
+  const {fundRequestContract} = await initializeContracts();
+  const accounts = await web3.eth.requestAccounts();
+
+  const rejectReqTx = await fundRequestContract.methods.rejectRequest(department).send({from: accounts[0], gasPrice: 300000000})
+
+  console.log("Transaction Hash: ", rejectReqTx.transactionHash);
+}
+
+export const allocateBudgetToDepartment = async(department, amount, id) => {
+  const {budgetAllocationContract} = await initializeContracts();
+
+  const allocateTx = await budgetAllocationContract.methods.allocateBudget(department, amount, id).send({from: accounts[0], gas: 300000000})
+
+  console.log("Transaction Hash: ", allocateTx.transactionHash);
+}
+
+export const getDepartmentAllocation = async(department) => {
+  const {publicDashboardContract} = await initializeContracts();
+  const getAllocationTx = await publicDashboardContract.methods.getAllocation(department).call();
+
+  console.log("Transation Hash: ", getAllocationTx);
+
+  return getAllocationTx;
 }
