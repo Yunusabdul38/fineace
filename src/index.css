@@ -9,3 +9,9 @@ body{
 .active{
     color: #FF450D;
 }
+.money{
+    background-image: url("../src/assets/coins.jpg");
+}
+.coin{
+    background-image: url("../src/assets/coins.jpg");
+}
